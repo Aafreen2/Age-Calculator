@@ -1,0 +1,50 @@
+currentDate: Today's date (day of the month).
+birthDetails.date: The birth day of the person.
+birthDate, birthMonth, birthYear: Variables to calculate the age.
+months: Array containing the number of days in each month.
+Example Input:
+Suppose today's date is December 31, 2024 (currentDate = 31, currentMonth = 12, currentYear = 2024), and the birth date is February 5, 2000 (birthDetails.date = 5, birthDetails.month = 2, birthDetails.year = 2000).
+
+Step-by-Step Execution:
+Compare currentDate and birthDetails.date:
+
+Check if today's day (currentDate) is greater than or equal to the birth day (birthDetails.date).
+In this example: 31 >= 5 (true). So, no adjustment to the month is needed, and birthDate is calculated as:
+javascript
+Copy code
+birthDate = currentDate - birthDetails.date; // 31 - 5 = 26
+Handle the Case When currentDate < birthDetails.date:
+
+If today's day is less than the birth day, adjust the calculations:
+
+Decrement birthMonth by 1 (i.e., use the previous month).
+Add the number of days in the previous month to currentDate to calculate birthDate.
+In this case, since currentDate >= birthDetails.date, this part is skipped.
+
+Check for birthMonth < 0:
+
+If the month adjustment results in birthMonth < 0, it means the year needs to be decremented, and birthMonth is set to 11 (December).
+In this example, this condition is not triggered since currentMonth = 12.
+Display the Result:
+
+Call displayResult with the calculated values:
+javascript
+Copy code
+displayResult(birthDate, birthMonth, birthYear);
+Adjusted Calculation Example:
+Suppose today's date is January 2, 2024, and the birth date is February 5, 2000.
+
+currentDate = 2, birthDetails.date = 5: 2 < 5 (false).
+Adjust month:
+javascript
+Copy code
+birthMonth--; // January -> December
+Add the days of December:
+javascript
+Copy code
+days = months[currentMonth - 2]; // days = months[11 - 2] = 31
+birthDate = days + currentDate - birthDetails.date; // 31 + 2 - 5 = 28
+Check for birthMonth < 0: Not triggered.
+Final calculated values:
+
+birthDate = 28, birthMonth = 11, birthYear = 2023.
